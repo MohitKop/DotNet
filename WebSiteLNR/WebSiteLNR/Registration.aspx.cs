@@ -13,6 +13,7 @@ public partial class Registration : System.Web.UI.Page
     string gender;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
 
     }
 
@@ -32,10 +33,6 @@ public partial class Registration : System.Web.UI.Page
 
     }
 
-    /*protected void registertxt_Click(object sender, EventArgs e)
-    {
-
-    }*/
 
     protected void RegisterUser(object sender, EventArgs e)
     {
@@ -43,12 +40,12 @@ public partial class Registration : System.Web.UI.Page
         con.Open();
         string check = "select * from emp_table where EmailID='" + Emailtxt.Text + "'";
         SqlCommand cm = new SqlCommand(check, con);
-        int temp = Convert.ToInt32(cm.ExecuteScalar().ToString());
+        int temp = Convert.ToInt32(cm.ExecuteScalar());
         con.Close();
         if (temp == 1)
         {
             Response.Write("user with same emailid already exist");
-        } */
+        }*/
 
 
 
@@ -85,39 +82,21 @@ public partial class Registration : System.Web.UI.Page
 
     protected void cleartxt_Click(object sender, EventArgs e)
     {
-        Utilities.ResetAllControls(this);
+        // Utilities.ResetAllControls(this);
+        Fullnametxt.Text = string.Empty;
+        Emailtxt.Text = string.Empty;
+        dobtxt.Text = string.Empty;
+        biotxt.Text = string.Empty;
+        passtxt.Text = string.Empty;
+        repasstxt.Text = string.Empty;
+        ddlist.SelectedValue = "0";
+        
+
     }
 
-    /*void ClearInputs()
+
+    protected void passtxt_TextChanged(object sender, EventArgs e)
     {
-        Fullnametxt.Text=null;
-        Emailtxt.Text = null;
-        dobtxt.Text = "";
-        biotxt.Text = "";
-        passtxt.Text = "";
-        repasstxt.Text = "";
 
-    }*/
-
-}
-public class Utilities
-{ 
-    public static void ResetAllControls(Control form)
-    {
-        foreach (Control control in form.Controls)
-        {
-            if (control is TextBox)
-            {
-                TextBox textBox = (TextBox)control;
-                textBox.Text = null;
-            }
-
-            
-            if (control is ListBox)
-            {
-                ListBox listBox = (ListBox)control;
-                listBox.ClearSelection();
-            }
-        }
     }
 }

@@ -3,10 +3,7 @@
 <!DOCTYPE html>
 
 <script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        lblServerDateTime.Text = DateTime.Now.ToString();
-    }
+    
 
 </script>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,11 +13,12 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            WELCOME<br />
+           <asp:Label runat="server" ID="lblUserId" Visible="false"></asp:Label>
+            <br />
             <br />
         </div>
         <p>
-            <asp:TextBox ID="lblServerDateTime" runat="server"></asp:TextBox>
+            <asp:TextBox ID="lblServerDateTime" runat="server" OnTextChanged="lblServerDateTime_TextChanged"></asp:TextBox>
         </p>
     </form>
 </body>

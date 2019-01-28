@@ -22,13 +22,13 @@ public partial class Login : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\userdb.mdf;Integrated Security=True");
         con.Open();
-        string check = "select * from emp_table where EmailID='" + Nametxt.Text + "'and Password='" + Passwordtxt.Text + "'";
+        string check = "select ID from emp_table where EmailID='" + Nametxt.Text + "'and Password='" + Passwordtxt.Text + "'";
         SqlCommand cm = new SqlCommand(check, con);
-        int temp =Convert.ToInt32(cm.ExecuteScalar().ToString());
+        int temp =Convert.ToInt32(cm.ExecuteScalar());
         con.Close();
-        if (temp == 1)
+        if ((temp>0) )
         {
-            Response.Redirect("Homepage.aspx");
+            Response.Redirect("Homepage.aspx?Id="+temp);
         }
         else
         {
